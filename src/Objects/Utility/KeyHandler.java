@@ -26,7 +26,7 @@ public class KeyHandler extends KeyAdapter {
             for(GameObject object : objectHandler.objects) {
                 Player playerObject = (Player)object;
                 if(playerObject.getName().equals("Player")) {
-                   movable = (Player)object;
+                   movable = playerObject;
                 }
             }
         }
