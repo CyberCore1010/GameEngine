@@ -1,6 +1,7 @@
 package Objects.Utility;
 
 import Objects.GameObject;
+import Objects.Interfaces.Movable;
 import Objects.Player.Player;
 
 import java.awt.event.KeyAdapter;
@@ -8,7 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class KeyHandler extends KeyAdapter {
     private ObjectHandler objectHandler;
-    private Player player;
+    private Movable movable;
 
     /**
      * @param objectHandler - takes the object handler as a parameter so it can set variables in it.
@@ -21,33 +22,33 @@ public class KeyHandler extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        if(player == null) {
+        if(movable == null) {
             for(GameObject object : objectHandler.objects) {
                 Player playerObject = (Player)object;
                 if(playerObject.getName().equals("Player")) {
-                    player = (Player)object;
+                   movable = (Player)object;
                 }
             }
         }
 
         if(key == KeyEvent.VK_W) {
-            if(player != null) {
-                player.setWPressed(true);
+            if(movable != null) {
+                movable.setWPressed(true);
             }
         }
         if(key == KeyEvent.VK_A) {
-            if(player != null) {
-                player.setAPressed(true);
+            if(movable != null) {
+                movable.setAPressed(true);
             }
         }
         if(key == KeyEvent.VK_S) {
-            if(player != null) {
-                player.setSPressed(true);
+            if(movable != null) {
+                movable.setSPressed(true);
             }
         }
         if(key == KeyEvent.VK_D) {
-            if(player != null) {
-                player.setDPressed(true);
+            if(movable != null) {
+                movable.setDPressed(true);
             }
         }
     }
@@ -57,23 +58,23 @@ public class KeyHandler extends KeyAdapter {
         int key = e.getKeyCode();
 
         if(key == KeyEvent.VK_W) {
-            if(player != null) {
-                player.setWPressed(false);
+            if(movable != null) {
+                movable.setWPressed(false);
             }
         }
         if(key == KeyEvent.VK_A) {
-            if(player != null) {
-                player.setAPressed(false);
+            if(movable != null) {
+                movable.setAPressed(false);
             }
         }
         if(key == KeyEvent.VK_S) {
-            if(player != null) {
-                player.setSPressed(false);
+            if(movable != null) {
+                movable.setSPressed(false);
             }
         }
         if(key == KeyEvent.VK_D) {
-            if(player != null) {
-                player.setDPressed(false);
+            if(movable != null) {
+                movable.setDPressed(false);
             }
         }
     }
