@@ -1,55 +1,51 @@
 package Objects.Utility;
 
-import Objects.GameObject;
-import Objects.Interfaces.Movable;
-import Objects.Player.Player;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 public class KeyHandler extends KeyAdapter {
     private ObjectHandler objectHandler;
-    private Movable movable;
+
+    private static Map<String, Boolean> keyMap;
 
     /**
      * @param objectHandler - takes the object handler as a parameter so it can set variables in it.
      */
     public KeyHandler(ObjectHandler objectHandler) {
+        keyMap = new HashMap<>();
+        keyMap.put("W", false);
+        keyMap.put("A", false);
+        keyMap.put("S", false);
+        keyMap.put("D", false);
         this.objectHandler = objectHandler;
+    }
+
+    public static boolean isKeyPressed(String key) {
+        if(keyMap != null) {
+            return keyMap.get(key);
+        } else {
+            return false;
+        }
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        if(movable == null) {
-            for(GameObject object : objectHandler.objects) {
-                Player playerObject = (Player)object;
-                if(playerObject.getName().equals("Player")) {
-                   movable = playerObject;
-                }
-            }
-        }
-
         if(key == KeyEvent.VK_W) {
-            if(movable != null) {
-                movable.setWPressed(true);
-            }
+            keyMap.replace("W", true);
         }
         if(key == KeyEvent.VK_A) {
-            if(movable != null) {
-                movable.setAPressed(true);
-            }
+            keyMap.replace("A", true);
         }
         if(key == KeyEvent.VK_S) {
-            if(movable != null) {
-                movable.setSPressed(true);
-            }
+            keyMap.replace("S", true);
         }
         if(key == KeyEvent.VK_D) {
-            if(movable != null) {
-                movable.setDPressed(true);
-            }
+            keyMap.replace("D", true);
         }
     }
 
@@ -58,24 +54,16 @@ public class KeyHandler extends KeyAdapter {
         int key = e.getKeyCode();
 
         if(key == KeyEvent.VK_W) {
-            if(movable != null) {
-                movable.setWPressed(false);
-            }
+            keyMap.replace("W", false);
         }
         if(key == KeyEvent.VK_A) {
-            if(movable != null) {
-                movable.setAPressed(false);
-            }
+            keyMap.replace("A", false);
         }
         if(key == KeyEvent.VK_S) {
-            if(movable != null) {
-                movable.setSPressed(false);
-            }
+            keyMap.replace("S", false);
         }
         if(key == KeyEvent.VK_D) {
-            if(movable != null) {
-                movable.setDPressed(false);
-            }
+            keyMap.replace("D", false);
         }
     }
 }

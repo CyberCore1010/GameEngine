@@ -4,6 +4,7 @@ import Objects.GameObject;
 import Objects.Interfaces.Movable;
 import Objects.Interfaces.Name;
 import Objects.Interfaces.Positionable;
+import Objects.Utility.KeyHandler;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,7 +13,7 @@ public class Player extends GameObject implements Name, Movable, Positionable{
     private String name;
     private float x, y, z, width, height;
     private float velX = 0, velY = 0;
-    private boolean movable = true, wPressed = false, aPressed = false, sPressed = false, dPressed = false;
+    private boolean movable = true;
     private BufferedImage bufferedImage;
 
     public Player(String name, float x, float y, float z, float width, float height) {
@@ -34,24 +35,24 @@ public class Player extends GameObject implements Name, Movable, Positionable{
     }
 
     private void move(int walkSpeed) {
-        if(wPressed) {
+        if(KeyHandler.isKeyPressed("W")) {
             velY = -walkSpeed;
-        } else if(!sPressed){
+        } else if(!KeyHandler.isKeyPressed("S")){
             velX = 0;
         }
-        if(sPressed) {
+        if(KeyHandler.isKeyPressed("S")) {
             velY = walkSpeed;
-        } else if(!wPressed) {
+        } else if(!KeyHandler.isKeyPressed("W")) {
             velY = 0;
         }
-        if(aPressed) {
+        if(KeyHandler.isKeyPressed("A")) {
             velX = -walkSpeed;
-        } else if(!dPressed) {
+        } else if(!KeyHandler.isKeyPressed("D")) {
             velX = 0;
         }
-        if(dPressed) {
+        if(KeyHandler.isKeyPressed("D")) {
             velX = walkSpeed;
-        } else if(!aPressed) {
+        } else if(!KeyHandler.isKeyPressed("A")) {
             velX = 0;
         }
     }
@@ -77,25 +78,5 @@ public class Player extends GameObject implements Name, Movable, Positionable{
     @Override
     public void setMovable(boolean movable) {
         this.movable = movable;
-    }
-
-    @Override
-    public void setWPressed(boolean pressed) {
-        wPressed = pressed;
-    }
-
-    @Override
-    public void setAPressed(boolean pressed) {
-        aPressed = pressed;
-    }
-
-    @Override
-    public void setSPressed(boolean pressed) {
-        sPressed = pressed;
-    }
-
-    @Override
-    public void setDPressed(boolean pressed) {
-        dPressed = pressed;
     }
 }
